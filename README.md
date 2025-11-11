@@ -34,7 +34,9 @@ You will create a small simulator for a Pokémon training program. Each Pokémon
     
    Include a method:
 
-   `public void Use(int level)`
+   ```C#
+   public void Use(int level)
+   ```
 
    It shall print a message to the console like for instance:
 
