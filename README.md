@@ -45,8 +45,10 @@ You will create a small simulator for a Pokémon training program. Each Pokémon
 3. Create Predefined Attacks
    Before the program starts (e.g., in Main()), create at least two attacks per type and assign them to variables:
 
-   `Attack flamethrower = new Attack("Flamethrower", ElementType.Fire, 12);`
-   `Attack ember = new Attack("Ember", ElementType.Fire, 6);`
+   ```C#
+   Attack flamethrower = new Attack("Flamethrower", ElementType.Fire, 12);
+   Attack ember = new Attack("Ember", ElementType.Fire, 6);
+   ```
 
 4. Create an Abstract Class Pokemon
    Use public properties and include validation logic to ensure data integrity. Appropriate exceptions should be thrown if something goes wrong in validation.
