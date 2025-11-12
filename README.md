@@ -109,6 +109,8 @@ You will create a small simulator for a Pokémon training program. Each Pokémon
    - Change its Name
    - Increase its Level by 10
    - Print a message, e.g. "Evolved to {NewName}!"
+  
+   `Charmander is evolving... Now it is a Charmeleon and its level 11`
 
 7. Simulate the Trainer
    In your Main()-method:
