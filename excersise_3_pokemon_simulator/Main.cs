@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utils.UI;
 
 
 namespace excersise_3_pokemon_simulator
@@ -12,27 +13,6 @@ namespace excersise_3_pokemon_simulator
         Fire,
         Water,
         Grass
-    }
-
-
-    internal class Attack
-    {
-
-        public int BasePower { get; set; }
-        public ElementType ElementType { get; set; }
-        public string Name { get; set; }
-
-        public Attack(string name, ElementType elementType, int basePower)
-        {
-            Name = name;
-            ElementType = elementType;
-            BasePower = basePower;
-        }
-
-        public void Use(int level)
-        {
-            Console.WriteLine($"Flamethrower hit with a total power of {BasePower+level}");
-        }
     }
 
 
@@ -101,12 +81,17 @@ namespace excersise_3_pokemon_simulator
     internal class Main
     {
         private List<Pokemon>? _pokemons;
+        private ConsoleUI _ui;
 
         public void Init()
         {
             // 3. Create at least two attacks per type.
-            Attack flamethrower = new Attack(name: "Flamethrower", elementType: ElementType.Fire, basePower: 12);
-            Attack ember = new Attack("Ember", ElementType.Fire, 6);
+            Attack flamethrower = new Attack(name: "Flamethrower", ElementType.Fire, basePower: 12, _ui);
+            Attack ember        = new Attack(name: "Ember",        ElementType.Fire, basePower:  6, _ui);
+
+            // Just a quick test.
+            flamethrower.Use(10);
+            ember.Use(20);
 
             _pokemons = new List<Pokemon>();
             //TODO 2511121648: Create some pokemons and put them in the list
@@ -114,7 +99,7 @@ namespace excersise_3_pokemon_simulator
 
         public void Run()
         {
-            Console.WriteLine("POKEMON");
+            _ui.WrLn("POKEMON");
             Init();
 
             //TODO 2511121629: Run through the pokemon list once for a starter to see how things work...
@@ -125,6 +110,11 @@ namespace excersise_3_pokemon_simulator
                 //TODO 2511121651: Check if pokemon implements IEvolvable and call Evolve in that case.
                 //pokemon.Evolve();
             }
+        }
+
+        public Main(ConsoleUI ui)
+        {
+            _ui = ui;
         }
     }
 }
