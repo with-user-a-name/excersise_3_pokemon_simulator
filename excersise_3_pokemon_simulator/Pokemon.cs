@@ -44,10 +44,40 @@
 
         public ElementType Type { get; protected set; }
 
-        protected Pokemon(List<Attack> attacks)
+        protected Pokemon(List<Attack> attacks, ElementType type)
         {
+            Type = type;
+
             ArgumentNullException.ThrowIfNull(attacks);
+
             _attacks = attacks;
+            ValidateElementType();
+        }
+
+        private void ValidateElementType()
+        {
+            //NOTE 2511132237: Update _attacks with the new ElementType
+            //verified list tmpAttacks. The tmpAttacks list is a completely
+            //different list from _attacks and the only reference to it once
+            //tmpAttacks goes out of scope, when this method returns, is the
+            //protected _attacks field in this Pokemon-class.
+            //Hovewer, the Attack elements in the tmpAttacks list are the same
+            //between both lists (tmpAttacks, _attacks) but that should not
+            //matter as the props in the Attack class are only possible to read
+            //from the outside.
+            var tmpAttacks = new List<Attack>();
+            foreach (var attack in _attacks)
+            {
+                if (Type != attack.Type)
+                {
+                    throw new ValuesNotEqualException<ElementType>("(Type != attack.Type)", Type, attack.Type);
+                }
+                tmpAttacks.Add(attack);
+            }
+            _attacks = tmpAttacks;
+
+            //TODO 2511132319: Should there be additional checks to make sure all Attack's are unique.
+            //Perhaps existing functionality in the List<T> type to ensure there are no duplicates?
         }
 
         public void RandomAttack()

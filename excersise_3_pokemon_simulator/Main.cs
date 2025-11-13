@@ -58,6 +58,8 @@ namespace excersise_3_pokemon_simulator
             var pkMnAttacks = new List<Attack>();
             pkMnAttacks.Add(flamethrower);
             pkMnAttacks.Add(ember);
+            //pkMnAttacks.Add(flamethrower);
+            //pkMnAttacks.Add(choke);
             var pkMn = new FirePokemon(pkMnAttacks);
 
             _ui.WrLn("Init before pkMn.RandomAttack()");
