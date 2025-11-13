@@ -2,7 +2,7 @@
 {
     abstract class Pokemon
     {
-        private List<Attack>? _attacks;
+        protected List<Attack> _attacks;
 
         //TODO 2511131808: Perhaps extract min/max values for a prop to an enum?
         private const int _levelMinVal = 1;
@@ -46,16 +46,18 @@
 
         protected Pokemon(List<Attack> attacks)
         {
-            //TODO 2511121559: Make a deep copy of attacks in _attacks ?!
-            //Or whats the purpose, how will it be used... Nope, the attacks list shall be locked down as much as possible.
             ArgumentNullException.ThrowIfNull(attacks);
-            //TODO 2511131836: Should a check be made to ensure the type of the attacks match the type of the pokemon?
-            this._attacks = attacks;
+            _attacks = attacks;
         }
 
         public void RandomAttack()
         {
             // Selects a random attack from the list and calls its .Use method.
+            int i = 1;
+            foreach (var attack in _attacks)
+            {
+                attack.Use(i++);
+            }
         }
 
         public void Attack()

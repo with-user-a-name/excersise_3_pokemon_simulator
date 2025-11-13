@@ -5,14 +5,14 @@ namespace excersise_3_pokemon_simulator
     internal class Attack
     {
         private ConsoleUI _ui;
-        public int BasePower { get; set; }
-        public ElementType ElementType { get; set; }
-        public string Name { get; set; }
+        public int BasePower { get; private set; }
+        public ElementType Type { get; private set; }
+        public string Name { get; private set; }
 
-        public Attack(string name, ElementType elementType, int basePower, ConsoleUI ui)
+        public Attack(string name, ElementType type, int basePower, ConsoleUI ui)
         {
             Name = name;
-            ElementType = elementType;
+            Type = type;
             BasePower = basePower;
             _ui = ui;
         }

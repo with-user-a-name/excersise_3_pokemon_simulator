@@ -16,15 +16,6 @@ namespace excersise_3_pokemon_simulator
     }
 
 
-    class FirePokemon : Pokemon
-    {
-        public FirePokemon(List<Attack> attacks) : base(attacks)
-        {
-            Type = ElementType.Fire;
-        }
-    }
-
-
     class Charmander : FirePokemon, IEvolvable
     {
         public Charmander(List<Attack> attacks) : base(attacks)
@@ -64,57 +55,18 @@ namespace excersise_3_pokemon_simulator
             flamethrower.Use(10);
             ember.Use(20);
 
-            //TODO 2511131841: The pkMnAttacks list has to be secured.
             var pkMnAttacks = new List<Attack>();
             pkMnAttacks.Add(flamethrower);
             pkMnAttacks.Add(ember);
-            // Try make a Pokemon and see how the consrtuction behaves.
-            //var pkMn = new FirePokemon(pkMnAttacks);
-            //pkMnAttacks = null;
             var pkMn = new FirePokemon(pkMnAttacks);
 
-            string? pkMnName;
-            pkMnName = "123456789012345";
-
-            _ui.WrLn($"nameof(pkMnName):        \"{nameof(pkMnName)}\"");
-            _ui.WrLn($"nameof(pkMnName.Length): \"{nameof(pkMnName.Length)}\"");
-
-            //pkMnName = "123456789012345";
-            _ui.WrLn($"Setting pokemoin name to \"{pkMnName}\" that is {pkMnName.Length} long.");
-            pkMn.Name = pkMnName;
-            pkMnName = "12";
-            _ui.WrLn($"Setting pokemoin name to \"{pkMnName}\" that is {pkMnName.Length} long.");
-            pkMn.Name = pkMnName;
-            //pkMnName = "1234567890123456";
-            //_ui.WrLn($"Setting pokemoin name to \"{pkMnName}\" that is {pkMnName.Length} long.");
-            //pkMn.Name = pkMnName;
-            //pkMnName = "1";
-            //_ui.WrLn($"Setting pokemoin name to \"{pkMnName}\" that is {pkMnName.Length} long.");
-            //pkMn.Name = pkMnName;
-
-            //pkMnName = null;
-            //_ui.WrLn($"Setting pokemon name to null.");
-            //pkMn.Name = pkMnName;
-
-            //pkMnName = "";
-            //_ui.WrLn($"Setting pokemoin name to \"{pkMnName}\" that is {pkMnName.Length} long.");
-            //pkMn.Name = pkMnName;
-
-            pkMn.Name = "Carl Af Anka";
-            _ui.WrLn($"The pokemon name is: \"{pkMn.Name}\"");
-
-            pkMn.Level = uint.MaxValue;
-            _ui.WrLn($"The pokemon level is: \"{pkMn.Level}\"");
-
-            _ui.WrLn($"The pokemon type is: \"{pkMn.Type}\"");
-
-
+            _ui.WrLn("Init before pkMn.RandomAttack()");
+            pkMn.RandomAttack();
+            _ui.WrLn("Init after pkMn.RandomAttack()");
 
             //TODO 2511121648: Create some pokemons and put them in the list
             _pokemons = new List<Pokemon>();
             _pokemons.Add(pkMn);
-
-
 
         }
 
