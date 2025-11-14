@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using Utils.Ex;
 using Utils.UI;
 
@@ -9,13 +10,14 @@ namespace excersise_3_pokemon_simulator
     {
         protected readonly ConsoleUI _ui;
         protected List<Attack> _attacks;
+        private static Random _rand = new Random();
 
         //TODO 2511131808: Perhaps extract min/max values for a prop to an enum?
         private const int _levelMinVal = 1;
         private const int _nameMaxLen = 15;
         private const int _nameMinLen = 2;
 
-        private uint _level;
+        private uint _level = _levelMinVal;
         private string _name = "";
 
         public uint Level
@@ -92,21 +94,53 @@ namespace excersise_3_pokemon_simulator
         public void RandomAttack()
         {
             // Selects a random attack from the list and calls its .Use method.
-            int i = 1;
-            foreach (var attack in _attacks)
-            {
-                attack.Use(i++);
-            }
+            _ui.WrLn($"{Name}: RandomAttack");
+            int attackIx = _rand.Next(0, (_attacks.Count - 1));
+            _attacks[attackIx].Use((int)Level);
         }
 
         public void Attack()
         {
             // Allows the user to choose an attack from the list and calls its .Use method.
+            _ui.WrLn($"{Name}: Attack");
+
+            bool okSelection = false;
+            int selectedAttack;
+
+            do
+            {
+                ShowAttackMenu();
+                string inputStr = _ui.GetInput();
+                if (!int.TryParse(inputStr, out selectedAttack)
+                    || ((selectedAttack < 1) || (_attacks.Count < selectedAttack)) )
+                {
+                    _ui.WrLn($"Invalid choice \"{inputStr}\" please try again.");
+                    _ui.PressAnyKeyToContinue();
+                }
+                else
+                {
+                    okSelection = true;
+                }
+            } while (!okSelection);
+            _attacks[selectedAttack-1].Use((int)Level);
+        }
+
+        private void ShowAttackMenu()
+        {
+            _ui.WrLn($"Select which of {Name} attacks to use from the list:");
+            for (int i = 0; i < _attacks.Count; i++)
+            {
+                _ui.WrLn($"   {i+1} - {_attacks[i].Name} attack.");
+            }
+            _ui.Wr($"Enter choice 1 to {_attacks.Count}: ");
         }
 
         public void RaiseLevel()
         {
             // Increases the Pokémon's level and prints that it has leveled up.
+            _ui.Wr($"{Name} has leveled up from {Level} ");
+            Level += 1;
+            _ui.WrLn($"to {Level}.");
         }
     }
 }

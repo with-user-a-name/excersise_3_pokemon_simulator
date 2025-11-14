@@ -17,6 +17,13 @@ namespace Utils.UI
         //}
 
 
+        public bool IsKeyPressed(string key)
+        {
+            string pressedKey = Console.ReadKey().Key.ToString().ToLower();
+            return pressedKey[0] == key.ToLower()[0];
+        }
+
+
         public string GetInput()
         {
             return Console.ReadLine() ?? string.Empty;
@@ -37,7 +44,7 @@ namespace Utils.UI
         }
 
 
-        public void WrLn(string message)
+        public void WrLn(string message = "")
         {
             Wr(message + Environment.NewLine);
             //Console.WriteLine(message);
