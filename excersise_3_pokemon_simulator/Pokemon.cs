@@ -94,16 +94,16 @@ namespace excersise_3_pokemon_simulator
         public void RandomAttack()
         {
             // Selects a random attack from the list and calls its .Use method.
-            _ui.WrLn($"{Name}: RandomAttack");
-            int attackIx = _rand.Next(0, (_attacks.Count - 1));
+            //_ui.WrLn($"{Name}: RandomAttack: _attacks.Count: {_attacks.Count}");
+            int attackIx = _rand.Next(0, ((_attacks.Count-1) * 100));
+            attackIx = (int)Math.Round((double)attackIx / 100.0);
             _attacks[attackIx].Use((int)Level);
         }
 
         public void Attack()
         {
             // Allows the user to choose an attack from the list and calls its .Use method.
-            _ui.WrLn($"{Name}: Attack");
-
+            //_ui.WrLn($"{Name}: Attack");
             bool okSelection = false;
             int selectedAttack;
 

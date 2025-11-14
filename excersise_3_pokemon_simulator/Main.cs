@@ -61,7 +61,7 @@ namespace excersise_3_pokemon_simulator
                     _ui.WrLn("-------------------------------------------------------------------------------");
                     pokemon.RaiseLevel();
                     pokemon.Attack();
-                    //pokemon.RandomAttack();
+                    pokemon.RandomAttack();
                     if (pokemon is IEvolvable)
                         ((IEvolvable)pokemon).Evolve();
 
