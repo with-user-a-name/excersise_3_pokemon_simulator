@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,26 +12,6 @@ namespace excersise_3_pokemon_simulator
         Fire,
         Water,
         Grass
-    }
-
-
-    class Charmander : FirePokemon, IEvolvable
-    {
-        public Charmander(List<Attack> attacks) : base(attacks)
-        {
-
-        }
-
-        public void Evolve()
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-
-    public interface IEvolvable
-    {
-        void Evolve();
     }
 
 
@@ -55,12 +34,13 @@ namespace excersise_3_pokemon_simulator
             flamethrower.Use(10);
             ember.Use(20);
 
-            var pkMnAttacks = new List<Attack>();
+            List<Attack> pkMnAttacks;
+            Pokemon pkMn;
+
+            pkMnAttacks = new List<Attack>();
             pkMnAttacks.Add(flamethrower);
             pkMnAttacks.Add(ember);
-            //pkMnAttacks.Add(flamethrower);
-            //pkMnAttacks.Add(choke);
-            var pkMn = new FirePokemon(pkMnAttacks);
+            pkMn = new FirePokemon(pkMnAttacks, _ui);
 
             _ui.WrLn("Init before pkMn.RandomAttack()");
             pkMn.RandomAttack();
@@ -68,8 +48,27 @@ namespace excersise_3_pokemon_simulator
 
             //TODO 2511121648: Create some pokemons and put them in the list
             _pokemons = new List<Pokemon>();
+
+            // 1
+            pkMnAttacks = new List<Attack>();
+            pkMnAttacks.Add(flamethrower);
+            pkMnAttacks.Add(ember);
+            pkMn = new FirePokemon(pkMnAttacks, _ui);
             _pokemons.Add(pkMn);
 
+            // 2
+            pkMnAttacks = new List<Attack>();
+            pkMnAttacks.Add(flamethrower);
+            pkMnAttacks.Add(ember);
+            pkMn = new Charmander(pkMnAttacks, _ui);
+            _pokemons.Add(pkMn);
+
+            // 3
+            pkMnAttacks = new List<Attack>();
+            pkMnAttacks.Add(flamethrower);
+            pkMnAttacks.Add(ember);
+            pkMn = new FirePokemon(pkMnAttacks, _ui);
+            _pokemons.Add(pkMn);
         }
 
         public void Run()
@@ -77,13 +76,22 @@ namespace excersise_3_pokemon_simulator
             _ui.WrLn("POKEMON");
             Init();
 
-            //TODO 2511121629: Run through the pokemon list once for a starter to see how things work...
+            if (_pokemons == null)
+            {
+                return;
+            }
             foreach (var pokemon in _pokemons)
             {
+                _ui.WrLn("###############################");
+                _ui.WrLn($"pokemon.Name: \"{pokemon.Name}\"");
                 pokemon.RaiseLevel();
-                pokemon.Attack();
-                //TODO 2511121651: Check if pokemon implements IEvolvable and call Evolve in that case.
-                //pokemon.Evolve();
+                //pokemon.Attack();
+                pokemon.RandomAttack();
+                if (pokemon is IEvolvable)
+                {
+                    IEvolvable tmp = (IEvolvable) pokemon;
+                    tmp.Evolve();
+                }
             }
         }
 

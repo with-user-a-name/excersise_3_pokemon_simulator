@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using Utils.Ex;
+using Utils.UI;
 
 namespace excersise_3_pokemon_simulator
 {
     abstract class Pokemon
     {
+        protected readonly ConsoleUI _ui;
         protected List<Attack> _attacks;
 
         //TODO 2511131808: Perhaps extract min/max values for a prop to an enum?
@@ -46,11 +48,14 @@ namespace excersise_3_pokemon_simulator
             }
         }
 
+
         public ElementType Type { get; protected set; }
 
-        protected Pokemon(List<Attack> attacks, ElementType type)
+        protected Pokemon(List<Attack> attacks, ElementType type, ConsoleUI ui)
         {
+            _ui = ui;
             Type = type;
+            Name = this.GetType().Name;
 
             ArgumentNullException.ThrowIfNull(attacks);
 
