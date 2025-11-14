@@ -5,7 +5,7 @@ VisualStudioVersion = 17.14.36623.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "excersise_3_pokemon_simulator", "excersise_3_pokemon_simulator\excersise_3_pokemon_simulator.csproj", "{6B49AA46-5D68-4795-A728-0FD3C2677990}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.UI", "Utils.UI\Utils.UI.csproj", "{D21E0244-E35E-4227-8643-1894554FE2C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{3371CE57-EF11-4A76-B52D-D252C96DC8E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{6B49AA46-5D68-4795-A728-0FD3C2677990}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B49AA46-5D68-4795-A728-0FD3C2677990}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B49AA46-5D68-4795-A728-0FD3C2677990}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D21E0244-E35E-4227-8643-1894554FE2C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D21E0244-E35E-4227-8643-1894554FE2C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D21E0244-E35E-4227-8643-1894554FE2C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D21E0244-E35E-4227-8643-1894554FE2C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3371CE57-EF11-4A76-B52D-D252C96DC8E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3371CE57-EF11-4A76-B52D-D252C96DC8E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3371CE57-EF11-4A76-B52D-D252C96DC8E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3371CE57-EF11-4A76-B52D-D252C96DC8E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

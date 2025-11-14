@@ -1,4 +1,8 @@
-﻿namespace excersise_3_pokemon_simulator
+﻿using System;
+using System.Collections.Generic;
+using Utils.Ex;
+
+namespace excersise_3_pokemon_simulator
 {
     abstract class Pokemon
     {
